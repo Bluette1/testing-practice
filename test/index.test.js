@@ -1,4 +1,4 @@
-import { capitalize, reverseString, calculator } from '../src/index'
+import { capitalize, reverseString, calculator } from '../src/index';
 
 test('capitalizes a given string', () => {
   expect(capitalize('We')).toBe('We');
