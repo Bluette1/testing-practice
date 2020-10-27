@@ -18,4 +18,23 @@
    return reversedString;
  }
 
- export { capitalize, reverseString }
+ const calculator = {
+   add: (first, sec) => {
+     return first + sec;
+   },
+
+   subtract: (first, sec) => {
+     return first - sec;
+   },
+
+   divide: (first, sec) => {
+     return first / sec;
+   },
+
+   multiply: (first, sec) => {
+     return first * sec;
+   }
+
+ }
+
+ export { capitalize, reverseString, calculator }
