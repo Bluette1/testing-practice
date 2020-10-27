@@ -1,13 +1,9 @@
  const capitalize = (string) => {
-   const resultString = [];
-   string = string.split(' ');
-   string.forEach(word => {
+   return string.split(' ').map((word) => {
      const splitWord = word.split('');
      splitWord[0] = splitWord[0].toUpperCase();
-     word = splitWord.join('');
-     resultString.push(word);
-   });
-   return resultString.join(' ');
+     return splitWord.join('');
+   }).join(' ');
  }
 
  const reverseString = (string) => {
@@ -34,7 +30,6 @@
    multiply: (first, sec) => {
      return first * sec;
    }
-
  }
 
  export { capitalize, reverseString, calculator }
