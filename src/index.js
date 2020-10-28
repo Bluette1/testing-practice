@@ -55,6 +55,7 @@ const analyze = (numbers) => {
   };
 };
 
+
 export {
   capitalize, reverseString, calculator, caesar, analyze,
 };
