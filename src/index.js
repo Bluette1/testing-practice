@@ -22,44 +22,39 @@ const calculator = {
   multiply: (first, sec) => first * sec,
 };
 
-const encryptor = (range, encrypted) => {
-  const max = range.reduce((a, b) => Math.max(a, b));
-  const min = range.reduce((a, b) => Math.min(a, b));
-  if (encrypted > max) {
-    return String.fromCharCode(encrypted);
-  }
+const caesar = (string, shift) => {
+  const lowerCaseAlphabet = 'abcdefghijklmnopqrstuvwxyz';
+  const upperCaseAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let resultString = '';
 
-  encrypted = (encrypted - max) + (min - 1);
-  return String.fromCharCode(encrypted);
-};
+  for (let i = 0; i < string.length; i += 1) {
+    const idxLower = lowerCaseAlphabet.indexOf(string[i]);
+    const idxUpper = upperCaseAlphabet.indexOf(string[i]);
 
-const getRange = (start, end) => {
-  if (start === end) return [start];
-  return [start, ...getRange(start + 1, end)];
-};
-
-const ceasarCipher = (str, key) => {
-  const strArr = str.split('');
-  const strDigits = [];
-  strArr.forEach((curr, index) => {
-    console.log(`current index is: ${index} and the char is: ${curr} and the code is: ${curr.charCodeAt(index)}`);
-    if (getRange(65, 90).includes(curr.charCodeAt(index))) {
-      const encrypted = (curr.charCodeAt(index) + key) % 26;
-      strDigits.push(encryptor((getRange(65, 90)), encrypted));
-    } else if (getRange(97, 122).includes(curr.charCodeAt(index))) {
-      // encrypted = strArr[i].charCodeAt(i) + key % 26
-      // strDigits.push(encryptor((getRange(97, 122)), encrypted))
+    if (idxLower >= 0) {
+      const newIdx = (idxLower + shift) % 26;
+      resultString += lowerCaseAlphabet.charAt(newIdx);
+    } else if (idxUpper >= 0) {
+      const newIdx = (idxUpper + shift) % 26;
+      resultString += upperCaseAlphabet.charAt(newIdx);
     } else {
-      strDigits.push(curr);
+      resultString += string[i];
     }
-  });
-  // for (let i = 0; i < strArr.length; i += 1) {
-
-  // }
-  return strDigits.join('');
+  }
+  return resultString;
 };
 
-// console.log(getRange(65,90));
-console.log(ceasarCipher('people', 5));
+const analyze = (numbers) => {
+  const { length } = numbers;
+  const sum = numbers.reduce((total, num) => total + num, 0);
+  return {
+    average: sum / length,
+    min: Math.min(...numbers),
+    max: Math.max(...numbers),
+    length,
+  };
+};
 
-// export { capitalize, reverseString, calculator };
+export {
+  capitalize, reverseString, calculator, caesar, analyze,
+};

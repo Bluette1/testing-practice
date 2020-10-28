@@ -1,4 +1,6 @@
-import { capitalize, reverseString, calculator } from '../src/index';
+import {
+  capitalize, reverseString, calculator, caesar, analyze,
+} from '../src/index';
 
 test('capitalizes a given string', () => {
   expect(capitalize('We')).toBe('We');
@@ -28,4 +30,21 @@ test('calculator.divide divides two numbers', () => {
 test('calculator.multiply multiplies two numbers', () => {
   expect(calculator.multiply(2, 1)).toBe(2);
   expect(calculator.multiply(2, 3)).toBe(6);
+});
+
+test('caesar encrypts a string according to given shift value', () => {
+  const message = 'defend the east wall of the castle';
+  const enciphered = 'efgfoe uif fbtu xbmm pg uif dbtumf';
+  expect(caesar(message, 1)).toBe(enciphered);
+  expect(caesar(message.toUpperCase(), 1)).toBe(enciphered.toUpperCase());
+
+  const messagePunctuated = 'Defend the east wall of the castle!!';
+  const encipheredPunctuated = 'Efgfoe uif fbtu xbmm pg uif dbtumf!!';
+  expect(caesar(messagePunctuated, 1)).toBe(encipheredPunctuated);
+});
+test('analyze calculates the average, min, max and length of numbers in an array', () => {
+  expect(analyze([1, 2, 3]).average).toBe(2);
+  expect(analyze([1, 2, 3]).min).toBe(1);
+  expect(analyze([1, 2, 3]).max).toBe(3);
+  expect(analyze([1, 2, 3]).length).toBe(3);
 });
