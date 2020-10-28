@@ -41,22 +41,25 @@ const getRange = (start, end) => {
 const ceasarCipher = (str, key) => {
   const strArr = str.split('');
   const strDigits = [];
-  for (let i = 0; i < strArr.length; i += 1) {
-    console.log(`current index is: ${i} and the char is: ${strArr[i]} and the code is: ${strArr[i].charCodeAt(i)}`);
-    if (getRange(65, 90).includes(strArr[i].charCodeAt(i))) {
-      const encrypted = (strArr[i].charCodeAt(i) + key) % 26;
+  strArr.forEach((curr, index) => {
+    console.log(`current index is: ${index} and the char is: ${curr} and the code is: ${curr.charCodeAt(index)}`);
+    if (getRange(65, 90).includes(curr.charCodeAt(index))) {
+      const encrypted = (curr.charCodeAt(index) + key) % 26;
       strDigits.push(encryptor((getRange(65, 90)), encrypted));
-    } else if (getRange(97, 122).includes(strArr[i].charCodeAt(i))) {
+    } else if (getRange(97, 122).includes(curr.charCodeAt(index))) {
       // encrypted = strArr[i].charCodeAt(i) + key % 26
       // strDigits.push(encryptor((getRange(97, 122)), encrypted))
     } else {
-      strDigits.push(strArr[i]);
+      strDigits.push(curr);
     }
-  }
+  });
+  // for (let i = 0; i < strArr.length; i += 1) {
+
+  // }
   return strDigits.join('');
 };
 
 // console.log(getRange(65,90));
 console.log(ceasarCipher('people', 5));
 
-export { capitalize, reverseString, calculator };
+// export { capitalize, reverseString, calculator };
